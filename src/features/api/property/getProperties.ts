@@ -1,0 +1,13 @@
+import { AxiosPromise } from "axios";
+import axiosPublic from "../axiosPublic";
+
+const getProperties = async (params?: any): Promise<AxiosPromise> => {
+	try {
+		const response = await axiosPublic.get("/properties", { params });
+		return response;
+	} catch (err) {
+		throw new Error(err.message);
+	}
+};
+
+export default getProperties;
