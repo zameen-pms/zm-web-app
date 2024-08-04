@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const StyledButton = styled.button<any>`
 	outline: none;
-	padding: 12px;
+	padding: 10px 20px;
 	font-size: 1rem;
 	font-weight: 400;
 	cursor: ${(props) => (props.disabled ? "not-allowed" : "pointer")};

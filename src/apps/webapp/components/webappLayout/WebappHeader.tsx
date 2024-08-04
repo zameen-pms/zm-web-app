@@ -27,10 +27,7 @@ const WebappHeader = () => {
 					Properties
 					<MdArrowForwardIos />
 				</NavLink>
-				<Button
-					onClick={() => handleNavigate("/services")}
-					className="header-button"
-				>
+				<Button onClick={() => handleNavigate("/services")}>
 					Work With Us
 				</Button>
 			</nav>

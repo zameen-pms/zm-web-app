@@ -165,7 +165,7 @@ export const ConsulationForm = styled.form`
 	display: flex;
 	flex-direction: column;
 	gap: 2rem;
-	box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+	box-shadow: var(--modal-box-shadow);
 
 	.message {
 		background: var(--primary);
