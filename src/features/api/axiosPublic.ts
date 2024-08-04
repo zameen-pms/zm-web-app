@@ -5,6 +5,7 @@ import { getUser, setUser } from "../app/authSlice";
 
 const axiosPublic = axios.create({
 	baseURL: BACKEND_URL,
+	withCredentials: true,
 });
 
 axiosPublic.interceptors.request.use(

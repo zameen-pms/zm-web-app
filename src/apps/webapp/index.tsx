@@ -1,10 +1,10 @@
 import { Navigate, Route, Routes } from "react-router-dom";
-import WebAppLayout from "../../features/layouts/webappLayout/WebAppLayout";
 import HomePage from "./pages/home";
 import usePageTracking from "../../features/hooks/usePageTracking";
 import ApplicationsHome from "./pages/applications";
 import PropertiesHome from "./pages/properties";
 import ServicesHome from "./pages/services";
+import WebAppLayout from "./components/webappLayout/WebAppLayout";
 
 const WebappManager = () => {
 	usePageTracking();

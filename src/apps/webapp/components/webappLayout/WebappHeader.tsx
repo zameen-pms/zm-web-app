@@ -2,8 +2,8 @@ import { useState } from "react";
 import { useNavigate, To, NavLink } from "react-router-dom";
 import { StyledWebappHeader } from "./WebAppLayout.styled";
 import { MdArrowForwardIos, MdClose, MdMenu } from "react-icons/md";
-import Logo from "../../ui/logo/Logo";
-import Button from "../../ui/button/Button";
+import Button from "../../../../features/ui/button/Button";
+import Logo from "../../../../features/ui/logo/Logo";
 
 const WebappHeader = () => {
 	const navigate = useNavigate();

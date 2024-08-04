@@ -7,12 +7,5 @@
 		{
 			"path": "./tsconfig.node.json"
 		}
-	],
-	"compilerOptions": {
-		"baseUrl": "src",
-		"paths": {
-			"@api/*": ["features/api/*"],
-			"@ui/*": ["features/ui/*"]
-		}
-	}
+	]
 }

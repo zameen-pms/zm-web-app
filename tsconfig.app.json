@@ -21,13 +21,7 @@
 		"strict": false,
 		"noUnusedLocals": true,
 		"noUnusedParameters": true,
-		"noFallthroughCasesInSwitch": true,
-
-		"baseUrl": "src",
-		"paths": {
-			"@api/*": ["features/api/*"],
-			"@ui/*": ["features/ui/*"]
-		}
+		"noFallthroughCasesInSwitch": true
 	},
 	"include": ["emails", "src"]
 }

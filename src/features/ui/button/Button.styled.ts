@@ -21,6 +21,7 @@ export const StyledButton = styled.button<any>`
 			? props.$color || "var(--primary)"
 			: "white"};
 	white-space: nowrap;
+	min-width: 100px;
 
 	&:hover {
 		background: ${(props) =>

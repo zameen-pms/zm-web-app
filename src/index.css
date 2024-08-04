@@ -17,6 +17,7 @@
 	--gray: #7c8184;
 	--light-gray: #d3d3d3;
 	--off-white: #f2f2f4;
+	--modal-box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
 }
 
 #root,
