@@ -24,7 +24,7 @@ const Contracts = () => {
 	return (
 		<>
 			<div className="row justify-sb align-center">
-				<h3>Contracts</h3>
+				<h2>Contracts</h2>
 				<Button onClick={() => navigate("add")}>Add Contract</Button>
 			</div>
 			{contracts ? (

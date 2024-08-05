@@ -29,6 +29,7 @@ const Applications = () => {
 
 	return (
 		<>
+			<h2>Applications</h2>
 			<Tab
 				options={["All", "In-Progress", "Approved", "Rejected"]}
 				tab={status}

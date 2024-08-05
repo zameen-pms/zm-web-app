@@ -55,7 +55,7 @@ const Leases = () => {
 	return (
 		<>
 			<div className="row align-center justify-sb">
-				<h3>Leases</h3>
+				<h2>Leases</h2>
 				<Button onClick={() => navigate("add")}>Add Lease</Button>
 			</div>
 			<LeasesTable leases={leases} />

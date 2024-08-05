@@ -53,14 +53,14 @@ const Contract = () => {
 	if (!contract) return <p>Loading...</p>;
 
 	return (
-		<Container>
+		<>
 			<div className="row justify-sb align-center">
 				<div className="row align-center gap-05">
-					{contract?.title && <h3>Contract: {contract.title}</h3>}
+					{contract?.title && <h2>Contract: {contract.title}</h2>}
 				</div>
 				<Button onClick={handleDelete}>Delete</Button>
 			</div>
-			<div className="column gap-2">
+			<form>
 				<div className="grid">
 					<Input
 						label="Document Title"
@@ -91,8 +91,8 @@ const Contract = () => {
 					/>
 				</div>
 				{url && <PdfViewer url={url} />}
-			</div>
-		</Container>
+			</form>
+		</>
 	);
 };
 

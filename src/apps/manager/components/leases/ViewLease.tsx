@@ -25,7 +25,7 @@ const ViewLease = ({ lease }) => {
 	}, [lease]);
 
 	return (
-		<div className="column gap-2">
+		<form>
 			<div className="grid">
 				<Input
 					label="Status"
@@ -82,7 +82,7 @@ const ViewLease = ({ lease }) => {
 				/>
 			</div>
 			{url && <PdfViewer url={url} />}
-		</div>
+		</form>
 	);
 };
 

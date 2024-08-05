@@ -72,10 +72,10 @@ const Application = () => {
 	return (
 		<>
 			<div className="row align-center justify-sb">
-				<h3>
+				<h2>
 					{`Application: ${application?.personal?.firstName} ${application?.personal?.lastName}` ||
 						"Application"}
-				</h3>
+				</h2>
 				<div className="row gap-05">
 					{canEdit && <Button onClick={handleSave}>Save</Button>}
 					<Button onClick={handleEditClick}>

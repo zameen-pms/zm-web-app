@@ -5,7 +5,7 @@ import { getAddress } from "../../../../features/utils/getAddress";
 const ApplicationOverview = ({ canEdit, application, setApplication }) => {
 	if (!application) return;
 	return (
-		<div className="column gap-1">
+		<form>
 			<Input
 				label="Property"
 				value={getAddress(application?.property?.address) || ""}
@@ -46,7 +46,7 @@ const ApplicationOverview = ({ canEdit, application, setApplication }) => {
 					disabled
 				/>
 			</div>
-		</div>
+		</form>
 	);
 };
 

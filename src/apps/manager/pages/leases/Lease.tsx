@@ -47,9 +47,9 @@ const Lease = () => {
 		<>
 			<div className="row justify-sb align-center">
 				{lease?.contract?.title ? (
-					<h3>{lease.contract.title}</h3>
+					<h2>{lease.contract.title}</h2>
 				) : (
-					<h3>Lease</h3>
+					<h2>Lease</h2>
 				)}
 				<Button onClick={handleDelete}>Delete</Button>
 			</div>

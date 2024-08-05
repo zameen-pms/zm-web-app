@@ -55,11 +55,11 @@ const User = () => {
 	return (
 		<>
 			<div className="row align-center justify-sb">
-				<h3>
+				<h2>
 					{user?.firstName && user?.lastName
 						? `${user.firstName} ${user.lastName}`
 						: "User"}
-				</h3>
+				</h2>
 				<div className="row align-center gap-05">
 					<Button onClick={handleEditClick}>
 						{canEdit ? "Cancel" : "Edit"}
