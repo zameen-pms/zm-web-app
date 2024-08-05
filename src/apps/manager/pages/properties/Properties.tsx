@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import getProperties from "../../../../features/api/property/getProperties";
-import Container from "../../../../features/ui/container/Container";
 import PropertiesTable from "../../components/properties/PropertiesTable";
 
 const Properties = () => {
@@ -25,13 +24,13 @@ const Properties = () => {
 	}, []);
 
 	return (
-		<Container>
+		<>
 			{isLoading ? (
 				<p>Loading Properties...</p>
 			) : (
 				<PropertiesTable properties={properties} />
 			)}
-		</Container>
+		</>
 	);
 };
 

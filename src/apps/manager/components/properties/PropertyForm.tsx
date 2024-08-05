@@ -212,12 +212,16 @@ const PropertyForm = ({ property, setProperty, canEdit, handleSave }) => {
 						/>
 						<Dropdown
 							label="Availability"
-							options={["Available", "Unavailable", "Occupied"]}
+							options={[
+								{ value: "Available" },
+								{ value: "Unavailable" },
+								{ value: "Occupied" },
+							]}
 							value={property?.availability || ""}
-							onChange={(e) =>
+							onChange={(option) =>
 								setProperty({
 									...property,
-									availability: e.value,
+									availability: option.value,
 								})
 							}
 							required

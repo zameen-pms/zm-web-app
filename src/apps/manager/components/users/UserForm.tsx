@@ -16,8 +16,10 @@ const UserForm = ({ loading, canEdit, user, setUser }) => {
 			<Input label="Role" value={user?.role} readOnly disabled />
 			<Dropdown
 				label="Status"
-				options={["Active", "Disabled"]}
-				onChange={(val) => setUser({ ...user, status: val })}
+				options={[{ value: "Active" }, { value: "Disabled" }]}
+				onChange={(option) =>
+					setUser({ ...user, status: option.value })
+				}
 				value={user?.status}
 				disabled={!canEdit}
 			/>

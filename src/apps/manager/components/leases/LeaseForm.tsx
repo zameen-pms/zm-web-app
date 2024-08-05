@@ -69,6 +69,14 @@ const LeaseForm = ({ lease, setLease, canEdit, handleSave }) => {
 	return (
 		<form onSubmit={handleSave} className="column gap-2">
 			<div className="grid">
+				<Dropdown
+					label="Select Property"
+					options={properties}
+					onChange={(option) =>
+						setLease({ ...lease, property: option.id })
+					}
+					required
+				/>
 				<Input
 					label="Lease Start Date"
 					value={lease?.startDate || ""}

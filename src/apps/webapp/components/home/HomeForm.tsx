@@ -114,15 +114,15 @@ const HomeForm = forwardRef((_props, ref) => {
 					<Dropdown
 						label="How many properties are in your portfolio?"
 						options={[
-							"None, I'm looking to get started!",
-							"1-10 properties",
-							"11-50 properties",
-							"Over 50 properties",
+							{ value: "None, I'm looking to get started!" },
+							{ value: "1-10 properties" },
+							{ value: "11-50 properties" },
+							{ value: "Over 50 properties" },
 						]}
-						onChange={(value) =>
+						onChange={(option) =>
 							setConsultation({
 								...consultation,
-								propertyCount: value,
+								propertyCount: option.value,
 							})
 						}
 						required

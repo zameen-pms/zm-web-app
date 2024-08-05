@@ -14,10 +14,14 @@ const ApplicationOverview = ({ canEdit, application, setApplication }) => {
 			/>
 			<Dropdown
 				label="Application Status"
-				options={["In-Progress", "Approved", "Rejected"]}
+				options={[
+					{ value: "In-Progress" },
+					{ value: "Approved" },
+					{ value: "Rejected" },
+				]}
 				value={application?.status || ""}
-				onChange={(status) =>
-					setApplication({ ...application, status })
+				onChange={(option) =>
+					setApplication({ ...application, status: option.value })
 				}
 				disabled={!canEdit}
 			/>

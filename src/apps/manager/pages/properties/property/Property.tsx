@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import getPropertyById from "../../../../../features/api/property/getPropertyById";
 import updatePropertyById from "../../../../../features/api/property/updatePropertyById";
 import PropertyForm from "../../../components/properties/PropertyForm";
+import Button from "../../../../../features/ui/button/Button";
 
 const Property = () => {
 	const { propertyId } = useParams();
@@ -45,12 +46,20 @@ const Property = () => {
 	};
 
 	return (
-		<PropertyForm
-			property={property}
-			setProperty={setProperty}
-			canEdit={canEdit}
-			handleSave={handleSubmit}
-		/>
+		<>
+			<div className="row gap-05">
+				<Button onClick={handleEditClick}>
+					{canEdit ? "Cancel" : "Edit"}
+				</Button>
+				{canEdit && <Button>Save</Button>}
+			</div>
+			<PropertyForm
+				property={property}
+				setProperty={setProperty}
+				canEdit={canEdit}
+				handleSave={handleSubmit}
+			/>
+		</>
 	);
 };
 

@@ -1,11 +1,11 @@
 import { useDispatch, useSelector } from "react-redux";
 import { ApplicationSection, StyledFormGrid } from "../Applications.styled";
-import Dropdown from "@ui/dropdown/Dropdown";
 import {
 	getApplication,
 	getCanEdit,
 	setApplication,
 } from "../../../../../features/app/applicationSlice";
+import Dropdown from "../../../../../features/ui/dropdown/Dropdown";
 
 const Authorization = () => {
 	const dispatch = useDispatch();
@@ -24,14 +24,14 @@ const Authorization = () => {
 			<StyledFormGrid>
 				<Dropdown
 					label="I consent to a background check"
-					options={["Agree", "Disagree"]}
-					onChange={(value) =>
+					options={[{ value: "Agree" }, { value: "Disagree" }]}
+					onChange={(option) =>
 						dispatch(
 							setApplication({
 								...application,
 								authorization: {
 									...application.personal,
-									backgroundCheck: value,
+									backgroundCheck: option.value,
 								},
 							})
 						)
@@ -41,14 +41,14 @@ const Authorization = () => {
 				/>
 				<Dropdown
 					label="I consent to a credit check"
-					options={["Agree", "Disagree"]}
-					onChange={(value) =>
+					options={[{ value: "Agree" }, { value: "Disagree" }]}
+					onChange={(option) =>
 						dispatch(
 							setApplication({
 								...application,
 								authorization: {
 									...application.personal,
-									backgroundCheck: value,
+									backgroundCheck: option.value,
 								},
 							})
 						)
@@ -58,14 +58,14 @@ const Authorization = () => {
 				/>
 				<Dropdown
 					label="I consent to a reference check"
-					options={["Agree", "Disagree"]}
-					onChange={(value) =>
+					options={[{ value: "Agree" }, { value: "Disagree" }]}
+					onChange={(option) =>
 						dispatch(
 							setApplication({
 								...application,
 								authorization: {
 									...application.personal,
-									backgroundCheck: value,
+									backgroundCheck: option.value,
 								},
 							})
 						)
@@ -75,14 +75,14 @@ const Authorization = () => {
 				/>
 				<Dropdown
 					label="I consent to an employer check"
-					options={["Agree", "Disagree"]}
-					onChange={(value) =>
+					options={[{ value: "Agree" }, { value: "Disagree" }]}
+					onChange={(option) =>
 						dispatch(
 							setApplication({
 								...application,
 								authorization: {
 									...application.personal,
-									backgroundCheck: value,
+									backgroundCheck: option.value,
 								},
 							})
 						)

@@ -72,7 +72,10 @@ const MemberSection = ({ index, member }) => {
 			<StyledFormGrid>
 				<Dropdown
 					label="Member Type"
-					options={["Co-Applicant", "Dependent"]}
+					options={[
+						{ value: "Co-Applicant" },
+						{ value: "Dependent" },
+					]}
 					value={member?.type || ""}
 					onChange={(option) =>
 						dispatch(
@@ -80,7 +83,7 @@ const MemberSection = ({ index, member }) => {
 								field: "members",
 								index,
 								key: "type",
-								value: option,
+								value: option.value,
 							})
 						)
 					}

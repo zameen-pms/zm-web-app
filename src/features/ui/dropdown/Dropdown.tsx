@@ -1,49 +1,53 @@
 import { v4 } from "uuid";
 import { StyledDropdown } from "./Dropdown.styled";
-import { FC } from "react";
+import { FC, useRef, useState } from "react";
+import { MdArrowDropDown } from "react-icons/md";
+import useOutsideClick from "../../hooks/useOutsideClick";
 
-const Dropdown: FC<any> = ({
-	options,
-	value,
-	onChange,
-	label,
-	required,
-	id,
-	...rest
-}) => {
-	if (!options || options?.length === 0) return;
+const Dropdown: FC<any> = ({ label, options = [], onChange, ...props }) => {
+	const inputId = props?.id || v4();
+	const ref = useRef<HTMLDivElement>(null);
+	const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+	const [selectedOption, setSelectedOption] = useState(props?.value || null);
 
-	const inputId = id || v4();
+	useOutsideClick(ref, () => setIsDropdownOpen(false));
 
-	const handleChange = (e) => {
-		const newValue = e.target.value;
-		if (onChange) {
-			onChange(newValue);
-		}
+	const handleOpen = () => setIsDropdownOpen(!isDropdownOpen);
+
+	const handleOptionClick = (option) => {
+		setSelectedOption(option.value);
+		onChange(option);
 	};
 
 	return (
-		<StyledDropdown>
+		<StyledDropdown open={isDropdownOpen} ref={ref} onClick={handleOpen}>
 			{label && (
 				<label htmlFor={inputId}>
 					{label}
-					<span>{required ? "*" : ""}</span>
+					<span>{props?.required ? "*" : ""}</span>
 				</label>
 			)}
-			<select
-				onChange={handleChange}
-				id={inputId}
-				required={required}
-				{...rest}
-				value={value}
-			>
-				<option>Select An Option...</option>
-				{options.map((option, index) => (
-					<option key={index} value={option}>
-						{option}
-					</option>
-				))}
-			</select>
+			<input
+				type="text"
+				required={props?.required}
+				value={selectedOption || ""}
+				onChange={() => {}}
+				placeholder={props?.placeholder || "Please Select One..."}
+				disabled={props?.disabled}
+			/>
+			<MdArrowDropDown />
+			{isDropdownOpen && (
+				<ul className="options">
+					{options.map((option, index) => (
+						<li
+							onClick={() => handleOptionClick(option)}
+							key={index}
+						>
+							{option?.value || ""}
+						</li>
+					))}
+				</ul>
+			)}
 		</StyledDropdown>
 	);
 };

@@ -47,6 +47,7 @@ const Application = () => {
 		try {
 			await updateApplicationById(applicationId, application);
 			handleEditClick();
+			alert("Application has been saved.");
 		} catch (err) {
 			console.log(err);
 		}

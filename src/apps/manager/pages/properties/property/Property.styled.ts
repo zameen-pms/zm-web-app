@@ -18,7 +18,6 @@ export const StyledPropertyLayout = styled.section`
 `;
 
 export const StyledPropertyNavBar = styled.nav`
-	background: white;
 	display: flex;
 	gap: 1.5rem;
 
@@ -33,12 +32,12 @@ export const StyledPropertyNavBar = styled.nav`
 		border-radius: 4px;
 
 		&:hover {
-			color: var(--primary-blue);
+			color: var(--primary);
 		}
 
 		&.active {
 			color: white;
-			background: var(--primary-blue);
+			background: var(--primary);
 		}
 	}
 `;
