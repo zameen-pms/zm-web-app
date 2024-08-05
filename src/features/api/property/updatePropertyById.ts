@@ -9,7 +9,7 @@ const updatePropertyById = async (
 		const response = await axiosPublic.put(`/properties/${id}`, body);
 		return response;
 	} catch (err) {
-		throw new Error(err.message);
+		throw new Error(err?.response?.data || err.message);
 	}
 };
 

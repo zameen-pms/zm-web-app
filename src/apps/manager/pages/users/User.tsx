@@ -4,13 +4,12 @@ import getUserById from "../../../../features/api/users/getUserById";
 import updateUserById from "../../../../features/api/users/updateUserById";
 import Button from "../../../../features/ui/button/Button";
 import UserForm from "../../components/users/UserForm";
+import ControlBar from "../../../../features/ui/controlBar/ControlBar";
+import { User as UserModel } from "../../../../features/types/User";
 
 const User = () => {
 	const { userId } = useParams();
-	const [user, setUser] = useState({
-		firstName: "",
-		lastName: "",
-	});
+	const [user, setUser] = useState<UserModel>();
 	const [loading, setLoading] = useState(false);
 	const [canEdit, setCanEdit] = useState(false);
 
@@ -54,7 +53,7 @@ const User = () => {
 
 	return (
 		<>
-			<div className="row align-center justify-sb">
+			<ControlBar back="/users">
 				<h2>
 					{user?.firstName && user?.lastName
 						? `${user.firstName} ${user.lastName}`
@@ -66,7 +65,7 @@ const User = () => {
 					</Button>
 					{canEdit && <Button onClick={handleSubmit}>Save</Button>}
 				</div>
-			</div>
+			</ControlBar>
 			<UserForm
 				loading={loading}
 				canEdit={canEdit}

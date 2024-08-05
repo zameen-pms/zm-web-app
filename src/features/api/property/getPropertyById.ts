@@ -6,7 +6,7 @@ const getPropertyById = async (id: string): Promise<AxiosPromise> => {
 		const response = await axiosPublic.get(`/properties/${id}`);
 		return response;
 	} catch (err) {
-		throw new Error(err.message);
+		throw new Error(err?.response?.data || err.message);
 	}
 };
 

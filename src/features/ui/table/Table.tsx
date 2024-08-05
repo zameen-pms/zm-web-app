@@ -5,6 +5,10 @@ const Table = ({ columns, data, onRowClick }) => {
 		onRowClick(row);
 	};
 
+	if (!data || data.length === 0) {
+		return <p>No Data Available</p>;
+	}
+
 	return (
 		<StyledTable>
 			<thead>

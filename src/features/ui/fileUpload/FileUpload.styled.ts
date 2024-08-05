@@ -15,7 +15,7 @@ export const StyledFileUpload = styled.div`
 		flex-direction: row;
 		align-items: center;
 		gap: 0.5rem;
-		padding: 0.75rem 1rem;
+		padding: 0.65rem 0.75rem;
 		cursor: pointer;
 		border-radius: 5px;
 		transition: all 0.25s ease-in-out;
@@ -27,6 +27,7 @@ export const StyledFileUpload = styled.div`
 		p {
 			color: white;
 			font-size: 14px;
+			line-height: 14px;
 			font-weight: 400;
 			white-space: nowrap;
 		}

@@ -6,6 +6,6 @@ interface Address {
 }
 
 export const getAddress = (address: Address): string => {
-	const { street, city, state, zip } = address;
-	return `${street}, ${city}, ${state} ${zip}`;
+	if (!address) return "";
+	return `${address?.street}, ${address?.city}, ${address?.state} ${address?.zip}`;
 };

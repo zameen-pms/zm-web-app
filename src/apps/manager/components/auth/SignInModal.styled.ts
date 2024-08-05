@@ -23,6 +23,7 @@ export const StyledSignInModal = styled.section`
 		display: flex;
 		flex-direction: column;
 		gap: 1rem;
+		box-shadow: none;
 	}
 
 	@media (max-width: 500px) {

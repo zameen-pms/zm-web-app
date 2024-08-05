@@ -1,29 +1,37 @@
 import Dropdown from "../../../../features/ui/dropdown/Dropdown";
+import Form from "../../../../features/ui/form/Form";
 import Input from "../../../../features/ui/input/Input";
 
 const UserForm = ({ loading, canEdit, user, setUser }) => {
 	if (loading) return <p>Loading...</p>;
 
 	return (
-		<form className="column gap-1">
-			<Input
-				label="First Name"
-				value={user?.firstName}
-				readOnly
-				disabled
-			/>
-			<Input label="Last Name" value={user?.lastName} readOnly disabled />
-			<Input label="Role" value={user?.role} readOnly disabled />
-			<Dropdown
-				label="Status"
-				options={[{ value: "Active" }, { value: "Disabled" }]}
-				onChange={(option) =>
-					setUser({ ...user, status: option.value })
-				}
-				value={user?.status}
-				disabled={!canEdit}
-			/>
-		</form>
+		<Form>
+			<div className="form-grid">
+				<Input
+					label="First Name"
+					value={user?.firstName}
+					readOnly
+					disabled
+				/>
+				<Input
+					label="Last Name"
+					value={user?.lastName}
+					readOnly
+					disabled
+				/>
+				<Input label="Role" value={user?.role} readOnly disabled />
+				<Dropdown
+					label="Status"
+					options={[{ value: "Active" }, { value: "Disabled" }]}
+					onChange={(option) =>
+						setUser({ ...user, status: option.value })
+					}
+					value={user?.status}
+					disabled={!canEdit}
+				/>
+			</div>
+		</Form>
 	);
 };
 

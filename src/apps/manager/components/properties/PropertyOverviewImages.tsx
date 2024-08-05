@@ -1,32 +1,39 @@
-import { useEffect, useState } from "react";
+import { FC, useState } from "react";
+import Modal from "../../../../features/ui/modal/Modal";
+import { StyledImageGallery, StyledImageRow } from "./Properties.styled";
+import { Property } from "../../../../features/types/Property";
+import FileUpload from "../../../../features/ui/fileUpload/FileUpload";
+import { formatFileName } from "../../../../features/utils/formatFileName";
 import uploadAsset from "../../../../features/api/assets/uploadAsset";
 import updatePropertyById from "../../../../features/api/property/updatePropertyById";
+import { getImageUrl } from "../../../../features/utils/getImageUrl";
+import {
+	MdDelete,
+	MdKeyboardArrowDown,
+	MdKeyboardArrowUp,
+} from "react-icons/md";
 import removeAssetByKey from "../../../../features/api/assets/removeAssetByKey";
-import FileUpload from "../../../../features/ui/fileUpload/FileUpload";
-import { StyledPropertyImages } from "./Properties.styled";
-import PropertyImage from "./PropertyImage";
+import Button from "../../../../features/ui/button/Button";
 
-const UploadPropertyImages = ({ property, fetchProperty }) => {
+interface OverviewImagesProps {
+	property: Property;
+	fetchProperty: () => Promise<void>;
+}
+
+const PropertyOverviewImages: FC<OverviewImagesProps> = ({
+	property,
+	fetchProperty,
+}) => {
 	const [isLoading, setIsLoading] = useState(false);
-	const [selectedFiles, setSelectedFiles] = useState([]);
 
-	const formatFilename = (filename) => {
-		let lowercased = filename.toLowerCase();
-		let withUnderscores = lowercased.replace(/\s+/g, "_");
-		let trimmed = withUnderscores.slice(-20);
-		return trimmed;
-	};
-
-	const updatePropertyImages = async () => {
-		if (isLoading) return;
-
+	const handleChange = async (files) => {
 		try {
 			setIsLoading(true);
 			const { images, _id: propertyId } = property;
 
 			const newImages = [];
-			for (let file of selectedFiles) {
-				const name = formatFilename(file.name);
+			for (let file of files) {
+				const name = formatFileName(file.name);
 				if (!images.some((image) => image.name === name)) {
 					const { data: key } = await uploadAsset(file);
 					const newImage = {
@@ -46,14 +53,13 @@ const UploadPropertyImages = ({ property, fetchProperty }) => {
 
 			await fetchProperty();
 		} catch (err) {
-			console.log(err.message);
-			alert("Unable to update property images.");
+			alert(`There was an error uploading your images: ${err.message}`);
 		} finally {
 			setIsLoading(false);
 		}
 	};
 
-	const deleteImage = async (key) => {
+	const deleteImage = async (key: string) => {
 		if (isLoading) return;
 		try {
 			if (!confirm("Are you sure you want to delete this image?")) return;
@@ -65,14 +71,13 @@ const UploadPropertyImages = ({ property, fetchProperty }) => {
 			await removeAssetByKey(key);
 			await fetchProperty();
 		} catch (err) {
-			alert("Unable to delete image.");
-			console.log(err.message);
+			alert(`Unable to delete image: ${err.message}`);
 		} finally {
 			setIsLoading(false);
 		}
 	};
 
-	const shiftImageToIndex = async (key, toIndex) => {
+	const shiftImageToIndex = async (key: string, toIndex: number) => {
 		try {
 			setIsLoading(true);
 
@@ -99,14 +104,13 @@ const UploadPropertyImages = ({ property, fetchProperty }) => {
 			});
 			await fetchProperty();
 		} catch (err) {
-			console.log(err.message);
-			alert("Unable to shift image.");
+			alert(`Unable to shift image: ${err.message}`);
 		} finally {
 			setIsLoading(false);
 		}
 	};
 
-	const addDescription = async (index) => {
+	const addDescription = async (index: number) => {
 		try {
 			setIsLoading(true);
 
@@ -129,40 +133,51 @@ const UploadPropertyImages = ({ property, fetchProperty }) => {
 		}
 	};
 
-	useEffect(() => {
-		updatePropertyImages();
-	}, [selectedFiles]);
-
 	return (
-		<>
-			{isLoading ? (
-				<p>Loading...</p>
-			) : (
+		<Modal gap={2}>
+			<div className="row justify-sb">
+				<h2>Property Images</h2>
 				<FileUpload
-					allowedTypes={[
-						"image/jpeg",
-						"image/png",
-						"image/heic",
-						"image/heif",
-						"image/webp",
-					]}
-					setSelectedFiles={setSelectedFiles}
+					multiple
+					onChange={handleChange}
+					text="Upload Image(s)"
+					isLoading={isLoading}
 				/>
-			)}
-			<StyledPropertyImages>
+			</div>
+			<StyledImageGallery>
 				{property.images.map((image, index) => (
-					<PropertyImage
-						key={image._id}
-						index={index}
-						image={image}
-						deleteImage={deleteImage}
-						addDescription={addDescription}
-						shiftImageToIndex={shiftImageToIndex}
-					/>
+					<StyledImageRow key={index}>
+						<div className="row gap-1">
+							<div className="move-img">
+								<MdKeyboardArrowUp
+									onClick={() =>
+										shiftImageToIndex(image.key, index - 1)
+									}
+								/>
+								<MdKeyboardArrowDown
+									onClick={() =>
+										shiftImageToIndex(image.key, index + 1)
+									}
+								/>
+							</div>
+							<img
+								src={getImageUrl(image.key)}
+								alt={image.name}
+							/>
+							<p>Description: {image.description || "none"}</p>
+							<Button onClick={() => addDescription(index)}>
+								Update Description
+							</Button>
+						</div>
+						<MdDelete
+							onClick={() => deleteImage(image.key)}
+							className="delete-img"
+						/>
+					</StyledImageRow>
 				))}
-			</StyledPropertyImages>
-		</>
+			</StyledImageGallery>
+		</Modal>
 	);
 };
 
-export default UploadPropertyImages;
+export default PropertyOverviewImages;

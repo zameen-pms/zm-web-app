@@ -6,7 +6,7 @@ const createProperty = async (body?: any): Promise<AxiosPromise> => {
 		const response = await axiosPublic.post("/properties", body);
 		return response;
 	} catch (err) {
-		throw new Error(err.message);
+		throw new Error(err?.response?.data || err.message);
 	}
 };
 

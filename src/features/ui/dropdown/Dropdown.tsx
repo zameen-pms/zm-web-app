@@ -12,7 +12,11 @@ const Dropdown: FC<any> = ({ label, options = [], onChange, ...props }) => {
 
 	useOutsideClick(ref, () => setIsDropdownOpen(false));
 
-	const handleOpen = () => setIsDropdownOpen(!isDropdownOpen);
+	const handleOpen = () => {
+		if (!props.disabled) {
+			setIsDropdownOpen(!isDropdownOpen);
+		}
+	};
 
 	const handleOptionClick = (option) => {
 		setSelectedOption(option.value);
