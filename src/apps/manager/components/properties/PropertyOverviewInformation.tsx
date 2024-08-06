@@ -1,8 +1,8 @@
 import { useState } from "react";
 import Button from "../../../../features/ui/button/Button";
-import Input from "../../../../features/ui/input/Input";
 import Modal from "../../../../features/ui/modal/Modal";
 import Textbox from "../../../../features/ui/textbox/Textbox";
+import { getAddress } from "../../../../features/utils/getAddress";
 
 const PropertyOverviewInformation = ({
 	property,
@@ -50,148 +50,26 @@ const PropertyOverviewInformation = ({
 			</div>
 			<div className="column gap-1">
 				<h3>Address:</h3>
-				<div className="grid">
-					<Input
-						label="Street"
-						value={property.address.street}
-						onChange={(e) =>
-							setProperty({
-								...property,
-								address: {
-									...property.address,
-									street: e.target.value,
-								},
-							})
-						}
-						disabled={!canEdit}
-						required
-					/>
-					<Input
-						label="City"
-						value={property.address.city}
-						onChange={(e) =>
-							setProperty({
-								...property,
-								address: {
-									...property.address,
-									city: e.target.value,
-								},
-							})
-						}
-						disabled={!canEdit}
-						required
-					/>
-					<Input
-						label="State"
-						value={property.address.state}
-						onChange={(e) =>
-							setProperty({
-								...property,
-								address: {
-									...property.address,
-									state: e.target.value,
-								},
-							})
-						}
-						disabled={!canEdit}
-						required
-					/>
-					<Input
-						label="Zip Code"
-						value={property.address.zip}
-						onChange={(e) =>
-							setProperty({
-								...property,
-								address: {
-									...property.address,
-									zip: e.target.value,
-								},
-							})
-						}
-						disabled={!canEdit}
-						required
-					/>
-				</div>
+				<p>{getAddress(property.address)}</p>
 			</div>
-			<div className="column gap-2">
+			<div className="column gap-1">
 				<h3>General Information</h3>
-				<div className="grid">
-					<Input
-						label="Number Bedrooms"
-						type="number"
-						value={property.general.beds}
-						onChange={(e) =>
-							setProperty({
-								...property,
-								general: {
-									...property.general,
-									beds: e.target.value,
-								},
-							})
-						}
-						disabled={!canEdit}
-					/>
-					<Input
-						label="Number Baths"
-						type="number"
-						value={property.general.baths}
-						onChange={(e) =>
-							setProperty({
-								...property,
-								general: {
-									...property.general,
-									baths: e.target.value,
-								},
-							})
-						}
-						disabled={!canEdit}
-					/>
-					<Input
-						label="Size (sqft)"
-						type="number"
-						value={property.general.sqft}
-						onChange={(e) =>
-							setProperty({
-								...property,
-								general: {
-									...property.general,
-									sqft: e.target.value,
-								},
-							})
-						}
-						disabled={!canEdit}
-					/>
-					<Input
-						label="Rent ($)"
-						type="number"
-						value={property.general.rent}
-						onChange={(e) =>
-							setProperty({
-								...property,
-								general: {
-									...property.general,
-									rent: e.target.value,
-								},
-							})
-						}
-						disabled={!canEdit}
-					/>
-					<Textbox
-						label="Property Description"
-						type="number"
-						value={property.general.description}
-						onChange={(e) =>
-							setProperty({
-								...property,
-								general: {
-									...property.general,
-									description: e.target.value,
-								},
-							})
-						}
-						disabled={!canEdit}
-					/>
-				</div>
+				<p>{`${property.general.beds} beds | ${property.general.baths} baths | ${property.general.sqft} sqft`}</p>
+				<Textbox
+					label="Property Description"
+					type="number"
+					value={property.general.description}
+					onChange={(e) =>
+						setProperty({
+							...property,
+							general: {
+								...property.general,
+								description: e.target.value,
+							},
+						})
+					}
+					disabled={!canEdit}
+				/>
 			</div>
 		</Modal>
 	);
