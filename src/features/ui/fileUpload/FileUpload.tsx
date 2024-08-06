@@ -2,9 +2,17 @@ import { MdFileUpload } from "react-icons/md";
 import { StyledFileUpload } from "./FileUpload.styled";
 import { FC } from "react";
 
-const FileUpload: FC<any> = ({
+interface FileUploadProps {
+	multiple?: boolean;
+	allowedFileTypes?: string[];
+	onChange: (files) => void;
+	text?: string;
+	isLoading?: boolean;
+}
+
+const FileUpload: FC<FileUploadProps> = ({
 	multiple = false,
-	supportedFileTypes = [],
+	allowedFileTypes = [],
 	onChange,
 	text,
 	isLoading,
@@ -21,7 +29,7 @@ const FileUpload: FC<any> = ({
 				type="file"
 				multiple={multiple}
 				onChange={handleFileChange}
-				accept={supportedFileTypes.join(",")}
+				accept={allowedFileTypes.join(",")}
 				disabled={isLoading}
 			/>
 			<label htmlFor="file-upload">

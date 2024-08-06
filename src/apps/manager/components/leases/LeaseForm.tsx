@@ -8,6 +8,7 @@ import Input from "../../../../features/ui/input/Input";
 import UserSearchDropdown from "../contracts/UserSearchDropdown";
 import Button from "../../../../features/ui/button/Button";
 import ContractsTable from "./ContractsTable";
+import Form from "../../../../features/ui/form/Form";
 
 const LeaseForm = ({ lease, setLease, canEdit, handleSave }) => {
 	const [properties, setProperties] = useState(null);
@@ -67,8 +68,8 @@ const LeaseForm = ({ lease, setLease, canEdit, handleSave }) => {
 	if (!properties) return <p>Loading properties...</p>;
 
 	return (
-		<form onSubmit={handleSave} className="column gap-2">
-			<div className="grid">
+		<Form onSubmit={handleSave}>
+			<div className="form-grid">
 				<Dropdown
 					label="Select Property"
 					options={properties}
@@ -118,10 +119,10 @@ const LeaseForm = ({ lease, setLease, canEdit, handleSave }) => {
 					required
 				/>
 			</div>
-			<div className="grid">
+			<div className="form-grid">
 				<div className="column gap-05">
 					<Input
-						label="Tenants"
+						label="Tenant(s)"
 						placeholder="Search Tenants"
 						value={tenantSearch || ""}
 						onChange={(e) => setTenantSearch(e.target.value)}
@@ -161,14 +162,14 @@ const LeaseForm = ({ lease, setLease, canEdit, handleSave }) => {
 					search={contractSearch}
 					contracts={contracts}
 					loading={false}
-					onClick={({ id, row }) => {
-						setSelectedContract(row.title);
+					onClick={({ title, _id: id }) => {
+						setSelectedContract(title);
 						setLease({ ...lease, contract: id });
 					}}
 				/>
 			</div>
 			{canEdit && <Button type="submit">Save</Button>}
-		</form>
+		</Form>
 	);
 };
 

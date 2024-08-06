@@ -3,6 +3,7 @@ import getContracts from "../../../../features/api/contracts/getContracts";
 import ContractsTable from "../../components/contracts/ContractsTable";
 import { useNavigate } from "react-router-dom";
 import Button from "../../../../features/ui/button/Button";
+import ControlBar from "../../../../features/ui/controlBar/ControlBar";
 
 const Contracts = () => {
 	const [contracts, setContracts] = useState(null);
@@ -23,15 +24,11 @@ const Contracts = () => {
 
 	return (
 		<>
-			<div className="row justify-sb align-center">
+			<ControlBar>
 				<h2>Contracts</h2>
 				<Button onClick={() => navigate("add")}>Add Contract</Button>
-			</div>
-			{contracts ? (
-				<ContractsTable contracts={contracts} />
-			) : (
-				<p>Loading contracts...</p>
-			)}
+			</ControlBar>
+			<ContractsTable contracts={contracts} />
 		</>
 	);
 };

@@ -35,8 +35,11 @@ const ApplicationsTable = ({ applications }) => {
 			applications.map((app) => ({
 				...app,
 				id: app._id,
-				applicant: app.signature.name,
-				property: getAddress(app.property.address),
+				applicant: app?.signature?.name,
+				property:
+					app.property && app.property.address
+						? getAddress(app.property.address)
+						: "N/A",
 				createdAt: app.createdAt.split("T")[0],
 			}))
 		);

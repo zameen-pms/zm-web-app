@@ -3,6 +3,7 @@ import getProperties from "../../../../features/api/property/getProperties";
 import PropertiesTable from "../../components/properties/PropertiesTable";
 import Button from "../../../../features/ui/button/Button";
 import { useNavigate } from "react-router-dom";
+import ControlBar from "../../../../features/ui/controlBar/ControlBar";
 
 const Properties = () => {
 	const navigate = useNavigate();
@@ -28,10 +29,10 @@ const Properties = () => {
 
 	return (
 		<>
-			<div className="row justify-sb">
+			<ControlBar>
 				<h2>Properties</h2>
 				<Button onClick={() => navigate("add")}>Add Property</Button>
-			</div>
+			</ControlBar>
 			{isLoading ? (
 				<p>Loading Properties...</p>
 			) : (

@@ -72,7 +72,7 @@ const Documents = () => {
 					<FileUpload
 						onChange={handleUpload}
 						multiple
-						supportedFileTypes={["image/*"]}
+						allowedFileTypes={["image/*"]}
 						isLoading={isLoading}
 					/>
 				)}

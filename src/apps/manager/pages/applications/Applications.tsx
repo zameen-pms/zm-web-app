@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import getApplications from "../../../../features/api/applications/getApplications";
 import Tab from "../../../../features/ui/tab/Tab";
 import ApplicationsTable from "../../components/applications/ApplicationsTable";
+import ControlBar from "../../../../features/ui/controlBar/ControlBar";
 
 const Applications = () => {
 	const [status, setStatus] = useState("All");
@@ -29,7 +30,9 @@ const Applications = () => {
 
 	return (
 		<>
-			<h2>Applications</h2>
+			<ControlBar>
+				<h2>Applications</h2>
+			</ControlBar>
 			<Tab
 				options={["All", "In-Progress", "Approved", "Rejected"]}
 				tab={status}

@@ -6,6 +6,7 @@ import updateApplicationById from "../../../../features/api/applications/updateA
 import Button from "../../../../features/ui/button/Button";
 import ApplicationOverview from "../../components/applications/ApplicationOverview";
 import ApplicationForm from "../../components/applications/ApplicationForm";
+import ControlBar from "../../../../features/ui/controlBar/ControlBar";
 
 const Application = () => {
 	const { applicationId } = useParams();
@@ -71,7 +72,7 @@ const Application = () => {
 
 	return (
 		<>
-			<div className="row align-center justify-sb">
+			<ControlBar back="/applications">
 				<h2>
 					{`Application: ${application?.personal?.firstName} ${application?.personal?.lastName}` ||
 						"Application"}
@@ -82,7 +83,7 @@ const Application = () => {
 						{canEdit ? "Cancel" : "Edit"}
 					</Button>
 				</div>
-			</div>
+			</ControlBar>
 			<Tab
 				options={["Overview", "Application"]}
 				tab={tab}

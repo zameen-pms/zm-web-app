@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import getLeaseById from "../../../../features/api/leases/getLeaseById";
 import deleteLeaseById from "../../../../features/api/leases/deleteLeaseById";
 import ViewLease from "../../components/leases/ViewLease";
+import ControlBar from "../../../../features/ui/controlBar/ControlBar";
 
 const Lease = () => {
 	const { leaseId } = useParams();
@@ -45,14 +46,14 @@ const Lease = () => {
 
 	return (
 		<>
-			<div className="row justify-sb align-center">
+			<ControlBar>
 				{lease?.contract?.title ? (
-					<h2>{lease.contract.title}</h2>
+					<h2>Lease: {lease.contract.title}</h2>
 				) : (
 					<h2>Lease</h2>
 				)}
 				<Button onClick={handleDelete}>Delete</Button>
-			</div>
+			</ControlBar>
 			<ViewLease lease={lease} />
 		</>
 	);

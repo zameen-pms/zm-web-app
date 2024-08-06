@@ -4,6 +4,7 @@ import getLeases from "../../../../features/api/leases/getLeases";
 import getProperties from "../../../../features/api/property/getProperties";
 import Button from "../../../../features/ui/button/Button";
 import LeasesTable from "../../components/leases/LeasesTable";
+import ControlBar from "../../../../features/ui/controlBar/ControlBar";
 
 const Leases = () => {
 	const navigate = useNavigate();
@@ -54,10 +55,10 @@ const Leases = () => {
 
 	return (
 		<>
-			<div className="row align-center justify-sb">
+			<ControlBar>
 				<h2>Leases</h2>
 				<Button onClick={() => navigate("add")}>Add Lease</Button>
-			</div>
+			</ControlBar>
 			<LeasesTable leases={leases} />
 		</>
 	);

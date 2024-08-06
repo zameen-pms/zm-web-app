@@ -3,6 +3,8 @@ import { useNavigate } from "react-router-dom";
 import uploadAsset from "../../../../features/api/assets/uploadAsset";
 import createContract from "../../../../features/api/contracts/createContract";
 import ContractForm from "../../components/contracts/ContractForm";
+import ControlBar from "../../../../features/ui/controlBar/ControlBar";
+import FileUpload from "../../../../features/ui/fileUpload/FileUpload";
 
 const AddContract = () => {
 	const navigate = useNavigate();
@@ -28,15 +30,27 @@ const AddContract = () => {
 		}
 	};
 
+	const handleFileChange = (files) => setFiles(files);
+
 	return (
-		<ContractForm
-			contract={contract}
-			setContract={setContract}
-			files={files}
-			setSelectedFiles={setFiles}
-			canEdit={true}
-			handleSave={handleSave}
-		/>
+		<>
+			<ControlBar>
+				<h2>Create Contract</h2>
+				<FileUpload
+					allowedFileTypes={["application/pdf"]}
+					onChange={handleFileChange}
+					text={
+						files.length === 1 ? files[0].name : "Upload Contract"
+					}
+				/>
+			</ControlBar>
+			<ContractForm
+				contract={contract}
+				setContract={setContract}
+				canEdit={true}
+				handleSave={handleSave}
+			/>
+		</>
 	);
 };
 

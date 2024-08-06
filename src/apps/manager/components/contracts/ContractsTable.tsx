@@ -23,6 +23,7 @@ const ContractsTable = ({ contracts }) => {
 	const navigate = useNavigate();
 
 	useEffect(() => {
+		if (!contracts || contracts.length === 0) return;
 		setData(
 			contracts.map((contract) => ({
 				...contract,
@@ -42,6 +43,8 @@ const ContractsTable = ({ contracts }) => {
 		const { id } = row;
 		navigate(`/contracts/${id}`);
 	};
+
+	if (!contracts) return <p>Loading contracts...</p>;
 
 	return <Table columns={columns} data={data} onRowClick={handleRowClick} />;
 };

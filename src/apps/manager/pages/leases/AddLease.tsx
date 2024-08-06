@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import createLease from "../../../../features/api/leases/createLease";
 import LeaseForm from "../../components/leases/LeaseForm";
+import ControlBar from "../../../../features/ui/controlBar/ControlBar";
 
 const AddLease = () => {
 	const navigate = useNavigate();
@@ -13,11 +14,9 @@ const AddLease = () => {
 		tenants: [],
 		rent: "",
 		rentDate: "",
-		status: "",
 	});
 
-	const handleSave = async (e) => {
-		e.preventDefault();
+	const handleSave = async () => {
 		try {
 			if (lease.tenants.length === 0) {
 				return alert("Please select at least one tenant.");
@@ -34,12 +33,17 @@ const AddLease = () => {
 	};
 
 	return (
-		<LeaseForm
-			lease={lease}
-			setLease={setLease}
-			canEdit={true}
-			handleSave={handleSave}
-		/>
+		<>
+			<ControlBar>
+				<h2>Create Lease</h2>
+			</ControlBar>
+			<LeaseForm
+				lease={lease}
+				setLease={setLease}
+				canEdit={true}
+				handleSave={handleSave}
+			/>
+		</>
 	);
 };
 
