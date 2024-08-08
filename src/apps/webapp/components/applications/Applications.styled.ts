@@ -1,75 +1,49 @@
 import styled from "styled-components";
 
-export const StyledApplicationForm = styled.form`
-	border-radius: 10px;
-	padding: 1rem;
-	box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
-	display: flex;
-	flex-direction: column;
-	gap: 3rem;
-	background: white;
-`;
+interface Props {
+	$active: boolean;
+}
 
-export const ApplicationSection = styled.section`
+export const StyledFormNav = styled.ul`
 	display: flex;
-	flex-direction: column;
-	gap: 1rem;
+	border: 1px solid var(--light-gray);
+	border-radius: 5px;
 
-	h2 {
-		font-size: 20px;
-		font-weight: 400;
+	@media (max-width: 900px) {
+		display: none;
 	}
 `;
 
-export const ApplicationDelete = styled.button`
+export const FormNavItem = styled.li<Props>`
+	border-right: 1px solid var(--light-gray);
+	list-style: none;
+	width: 40px;
+	height: 40px;
 	display: flex;
-	flex-direction: row;
 	align-items: center;
-	gap: 0.5rem;
-	border: none;
-	color: white;
-	background-color: #e74c3c;
-	border-radius: 5px;
-	padding: 4px 8px;
+	justify-content: center;
+	font-size: 12px;
+	font-weight: ${(props) => (props.$active ? "500" : "400")};
+	color: ${(props) => (props.$active ? "var(--primary)" : "var(--gray)")};
+	text-decoration: ${(props) => (props.$active ? "underline" : "none")};
 	cursor: pointer;
-	transition: all 0.25s ease-in-out;
 
 	&:hover {
-		box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+		color: var(--primary);
 	}
 
-	p {
-		color: white;
+	&:last-child {
+		border: none;
 	}
 `;
 
-export const StyledFormGrid = styled.div`
-	display: grid;
-	grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-	gap: 1rem;
-`;
-
-export const StyledDocument = styled.div`
-	background: #e8e8e8;
-	display: flex;
-	align-items: center;
-	justify-content: space-between;
-	padding: 1rem 2rem;
+export const FormImage = styled.img`
+	width: 400px;
+	height: auto;
+	border: 1px solid var(--light-gray);
 	border-radius: 5px;
-	box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 
-	img {
-		width: 300px;
-		height: auto;
-	}
-
-	svg {
-		width: 30px;
-		height: 30px;
-		cursor: pointer;
-
-		&:hover {
-			color: #e74c3c;
-		}
+	@media (max-width: 800px) {
+		width: 100%;
 	}
 `;

@@ -1,14 +1,20 @@
 import { v4 } from "uuid";
 import { StyledDropdown } from "./Dropdown.styled";
-import { FC, useRef, useState } from "react";
+import { FC, useEffect, useRef, useState } from "react";
 import { MdArrowDropDown } from "react-icons/md";
 import useOutsideClick from "../../hooks/useOutsideClick";
 
-const Dropdown: FC<any> = ({ label, options = [], onChange, ...props }) => {
+const Dropdown: FC<any> = ({
+	label,
+	options = [],
+	value = null,
+	onChange,
+	...props
+}) => {
 	const inputId = props?.id || v4();
 	const ref = useRef<HTMLDivElement>(null);
 	const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-	const [selectedOption, setSelectedOption] = useState(props?.value || null);
+	const [selectedOption, setSelectedOption] = useState(value);
 
 	useOutsideClick(ref, () => setIsDropdownOpen(false));
 
@@ -22,6 +28,10 @@ const Dropdown: FC<any> = ({ label, options = [], onChange, ...props }) => {
 		setSelectedOption(option.value);
 		onChange(option);
 	};
+
+	useEffect(() => {
+		setSelectedOption(value);
+	}, [value]);
 
 	return (
 		<StyledDropdown open={isDropdownOpen} ref={ref} onClick={handleOpen}>

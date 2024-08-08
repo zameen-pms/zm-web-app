@@ -15,7 +15,7 @@ const PropertyInfo: FC<PropertyInfoProps> = ({ property }) => {
 	const navigate = useNavigate();
 
 	const handleApplicationClick = () => {
-		navigate(`/applications/${property._id}`);
+		navigate(`/applications/apply?property=${property._id}`);
 	};
 
 	const handleCallClick = () => {

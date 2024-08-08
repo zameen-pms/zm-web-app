@@ -1,6 +1,9 @@
 import styled from "styled-components";
 
 export const StyledFileUpload = styled.div`
+	width: min-content;
+	white-space: nowrap;
+
 	input {
 		opacity: 0;
 		width: 0.1px;

@@ -8,6 +8,13 @@ export const StyledForm = styled.form`
 	.form-grid {
 		display: grid;
 		grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-		gap: 1rem;
+		gap: 2rem;
+	}
+
+	@media (max-width: 1080px) {
+		.form-grid {
+			display: grid;
+			grid-template-columns: 1fr;
+		}
 	}
 `;

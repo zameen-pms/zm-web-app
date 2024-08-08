@@ -13,7 +13,7 @@ const Textbox: FC<any> = ({ label, required, id, ...rest }) => {
 					<span>{required ? "*" : ""}</span>
 				</label>
 			)}
-			<textarea id={inputId} {...rest} />
+			<textarea id={inputId} required={required} {...rest} />
 		</StyledTextbox>
 	);
 };

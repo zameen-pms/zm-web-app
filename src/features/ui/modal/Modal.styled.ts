@@ -11,8 +11,7 @@ export const StyledModal = styled.section<{
 	flex-direction: column;
 	gap: ${(props) => `${props.$gap}rem` || "1rem"};
 
-	h1,
-	h2 {
-		color: var(--primary);
+	h1 {
+		font-size: 30px;
 	}
 `;
